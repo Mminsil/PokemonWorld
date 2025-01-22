@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mi mundo de Pokemons</string>
+    <string name="captured_image">Imagen de Pokemon capturado</string>
+    <string name="title_details">Detalles de pokemons capturados</string>
+    <string name="about_text">Aplicación desarrollada por Mariana Mincarelli Silvero. Versión 1.0.</string>
+    <string name="about">Acerca de</string>
+    <string name="captured">Pokemons capturados</string>
+    <string name="pokedex">Lista Pokedex</string>
+    <string name="settings">Ajustes</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="trash_icon">Icono papelera</string>
+    <string name="enable_deletion">Habilitar eliminación</string>
+    <string name="language">Seleccionar lenguaje</string>
+    <string name="delete">Eliminar Pokemons capturados</string>
+    <string name="weight">Peso:\u0020</string>
+    <string name="height">Altura:\u0020</string>
+    <string name="index">Índice:\u0020</string>
+    <string name="accept">Aceptar</string>
+    <string name="english">Inglés</string>
+    <string name="spanish">Español</string>
+    <string name="titleLanguage">Cambiar el idioma</string>
+    <string name="name">Nombre del Pokemon</string>
+    <string name="type">Tipo:\u0020</string>
+</resources>

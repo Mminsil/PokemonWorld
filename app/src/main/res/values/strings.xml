@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">My Pokemons World</string>
+    <string name="captured_image">Image of pokemon captured\n</string>
+    <string name="title_details">Details of the captured pokemon</string>
+    <string name="about_text">Application developed by Mariana Mincarelli Silvero. Version 1.0.</string>
+    <string name="about">About us</string>
+    <string name="captured">Captured Pokemon</string>
+    <string name="pokedex">Pokedex List</string>
+    <string name="settings">Setting</string>
+    <string name="logout">Log out</string>
+    <string name="trash_icon">Trash icon</string>
+    <string name="enable_deletion">Enable deletion</string>
+    <string name="language">Select Language</string>
+    <string name="delete">Delete Captured Pokemons</string>
+    <string name="weight">Weight:\u0020</string>
+    <string name="height">Height:\u0020</string>
+    <string name="index">Index:\u0020</string>
+    <string name="accept">Accept</string>
+    <string name="english">English</string>
+    <string name="spanish">Spanish</string>
+    <string name="titleLanguage">Change the language</string>
+    <string name="name">Name of Pokemon</string>
+    <string name="type">Type:\u0020</string>
+    <string name="save">Pokemon saved successfully</string>
+    <string name="errorNotSave">Error: Not Saved</string>
+</resources>

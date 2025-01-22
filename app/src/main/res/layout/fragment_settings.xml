@@ -1,0 +1,148 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/black_border">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/yellow"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp"
+        >
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:scaleType="centerCrop" />
+
+        <!-- Sección 1: Idioma -->
+
+        <TextView
+            android:id="@+id/titleLanguageTextView"
+            style="@style/headerTitleDrawerStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/titleLanguage"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleLanguageTextView">
+
+            <TextView
+                android:id="@+id/languageTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/language"
+                android:textSize="18sp" />
+
+            <RadioGroup
+                android:id="@+id/languageRadioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkedButton="@id/englishRadioButton"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/englishRadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/red"
+                    android:clickable="true"
+                    android:text="@string/english"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/spanishRadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/red"
+                    android:clickable="true"
+                    android:text="@string/spanish"
+                    android:textSize="18sp" />
+
+            </RadioGroup>
+        </LinearLayout>
+
+
+        <!-- Línea divisoria -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/blue" />
+
+        <!-- Sección 2: Texto sobre algo -->
+        <TextView
+            android:id="@+id/title_about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/about"
+            android:textSize="18sp" />
+
+
+        <!-- Línea divisoria -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/blue" />
+
+        <!-- Sección 3: Eliminar Pokémon -->
+        <TextView
+            android:id="@+id/title_enable_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/delete"
+            android:textSize="18sp" />
+
+
+        <Switch
+            android:id="@+id/switch_enable_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginBottom="24dp"
+            android:buttonTint="@color/blue"
+            android:padding="8dp"
+            android:text="@string/enable_deletion"
+            android:thumbTint="@color/red" />
+
+        <!-- Línea divisoria -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/blue" />
+
+        <!-- Botón Log Out -->
+        <Button
+            android:id="@+id/logout_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/red"
+            android:text="@string/logout"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

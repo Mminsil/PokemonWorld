@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/item_captured"
+        android:icon="@drawable/captured_icon"
+        android:title="@string/captured"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/item_pokedex"
+        android:checked="true"
+        android:icon="@drawable/pokedex_icon"
+        android:title="@string/pokedex"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/item_settings"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="@string/settings"
+        app:showAsAction="ifRoom" />
+</menu>

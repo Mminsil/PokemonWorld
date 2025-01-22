@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "701877004019",
+    "project_id": "capturedpokemon-a2e4d",
+    "storage_bucket": "capturedpokemon-a2e4d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:701877004019:android:ab47c13f43699633def986",
+        "android_client_info": {
+          "package_name": "mincarelli.silvero.mypokemonsworld"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "701877004019-82op5029k6suq0bl0b8353u6b2v0b4f6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mincarelli.silvero.mypokemonsworld",
+            "certificate_hash": "784edc142945816a960822ca761f27659f399e60"
+          }
+        },
+        {
+          "client_id": "701877004019-lk26ndkgfiv2o1htf7ui0bosmrulepqm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZrPguZWB4lyPQ4cTFM4L8kQr7dle63a4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "701877004019-lk26ndkgfiv2o1htf7ui0bosmrulepqm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

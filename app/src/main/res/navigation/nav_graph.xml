@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/pokedexFragment">
+
+    <fragment
+        android:id="@+id/capturedFragment"
+        android:name="mincarelli.silvero.mypokemonsworld.CapturedFragment"
+        android:label="fragment_captured"
+        tools:layout="@layout/fragment_captured" />
+    <fragment
+        android:id="@+id/pokedexFragment"
+        android:name="mincarelli.silvero.mypokemonsworld.PokedexFragment"
+        android:label="fragment_pokedex"
+        tools:layout="@layout/fragment_pokedex" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="mincarelli.silvero.mypokemonsworld.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/capturedDetailFragment"
+        android:name="mincarelli.silvero.mypokemonsworld.CapturedDetailFragment"
+        android:label="fragment_captured_detail"
+        tools:layout="@layout/fragment_captured_detail" />
+</navigation>
