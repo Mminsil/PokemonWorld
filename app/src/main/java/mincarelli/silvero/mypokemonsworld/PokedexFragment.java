@@ -72,8 +72,12 @@ public class PokedexFragment extends Fragment {
      * Método para cargar la lista de Pokémon desde Firebase y actualizar los Pokémon capturados.
      */
     private void loadPokemonData() {
+        // Mostrar el ProgressBar y ocultar el RecyclerView
+        binding.progressBar.setVisibility(View.VISIBLE);
+        binding.recyclerviewPokedex.setVisibility(View.GONE);
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        repository.fetchPokemonList(0, 10, new PokemonRepository.PokemonListCallback() {
+        repository.fetchPokemonList(0, 150, new PokemonRepository.PokemonListCallback() {
             @Override
             public void onPokemonListLoaded(List<PokemonDetails> pokemonDetails) {
                 pokemonDetailsList.clear();
@@ -99,7 +103,10 @@ public class PokedexFragment extends Fragment {
                                     }
                                 }
                                 // Aquí es donde actualizas el adaptador para que se cambien los colores
-                                pokedexAdapter.notifyDataSetChanged(); // Refrescar el adaptador con los cambios
+                                pokedexAdapter.notifyDataSetChanged();
+                                // Ocultar el ProgressBar y mostrar el RecyclerView
+                                binding.progressBar.setVisibility(View.GONE);
+                                binding.recyclerviewPokedex.setVisibility(View.VISIBLE);
                             }
                         });
             }
