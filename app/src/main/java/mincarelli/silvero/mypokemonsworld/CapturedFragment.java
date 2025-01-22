@@ -12,18 +12,14 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -34,13 +30,25 @@ import java.util.List;
 
 import mincarelli.silvero.mypokemonsworld.databinding.FragmentCapturedBinding;
 
-
+/**
+ * Fragmento que muestra una lista de Pokémon capturados en un RecyclerView.
+ * Permite visualizar los detalles de cada Pokémon y eliminar elementos con un gesto de deslizamiento.
+ */
 public class CapturedFragment extends Fragment {
     private FragmentCapturedBinding binding;
     private CapturedAdapter capturedAdapter;
     private RecyclerView recyclerView;
     private List<CapturedPokemon> pokemonCapturedList = new ArrayList<>();
 
+    /**
+     * Infla la vista del fragmento y configura el RecyclerView con el adaptador.
+     * También establece un Listener para los clics en los ítems del RecyclerView.
+     *
+     * @param inflater           El inflador que se usa para inflar la vista.
+     * @param container          El contenedor en el que se va a agregar la vista.
+     * @param savedInstanceState El estado guardado, si existe.
+     * @return La vista inflada que representa el fragmento.
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -70,7 +78,6 @@ public class CapturedFragment extends Fragment {
         boolean isDeletionEnabled = prefs.getBoolean("enable_delete", false);
 
 
-
         // Configurar el Swipe para eliminar (basado en la preferencia)
         if (isDeletionEnabled) {
             // Configurar el Swipe para eliminar
@@ -95,11 +102,16 @@ public class CapturedFragment extends Fragment {
             itemTouchHelper.attachToRecyclerView(recyclerView);
         }
 
-        loadPokemonData();
+        readToFirebase();
 
         return binding.getRoot();
     }
 
+    /**
+     * Elimina un Pokémon de la base de datos de Firebase y de la lista local.
+     *
+     * @param pokemon El Pokémon que se eliminará.
+     */
     private void deleteToFirebase(CapturedPokemon pokemon) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -122,27 +134,28 @@ public class CapturedFragment extends Fragment {
                                     capturedAdapter.notifyDataSetChanged();
 
                                     // Mostrar mensaje de éxito al usuario
-                                    Toast.makeText(requireContext(), "Pokémon eliminado exitosamente", Toast.LENGTH_SHORT).show();
-                                    loadPokemonData();
+                                    Toast.makeText(requireContext(), R.string.pokemon_removed, Toast.LENGTH_SHORT).show();
+                                    readToFirebase();
                                 })
                                 .addOnFailureListener(e -> {
                                     // Mostrar mensaje de error al usuario
-                                    Toast.makeText(requireContext(), "Error al eliminar el Pokémon: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                    Log.e("CapturedFragment", "Error deleting Pokémon", e); // Registrar el error en los logs
+                                    Toast.makeText(requireContext(), R.string.error_deleting + e.getMessage(), Toast.LENGTH_SHORT).show();
                                 });
                     } else {
                         // Mostrar mensaje de error al usuario
-                        Toast.makeText(requireContext(), "Pokémon no encontrado", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireContext(), R.string.error_notFound, Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(e -> {
                     // Mostrar mensaje de error al usuario
-                    Toast.makeText(requireContext(), "Error al obtener el Pokémon: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                    Log.e("CapturedFragment", "Error getting Pokémon", e); // Registrar el error en los logs
+                    Toast.makeText(requireContext(), R.string.error_getting + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 
-    private void loadPokemonData() {
+    /**
+     * Lee los Pokémon capturados desde Firebase y actualiza la lista local.
+     */
+    private void readToFirebase() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("CapturedPokemon")
                 .get()
@@ -163,7 +176,6 @@ public class CapturedFragment extends Fragment {
                                 return Integer.compare(p1.getIndex(), p2.getIndex());
                             }
                         });
-
                         // Notifica al adaptador que los datos han cambiado
                         capturedAdapter.notifyDataSetChanged();
                     } else {
@@ -171,6 +183,4 @@ public class CapturedFragment extends Fragment {
                     }
                 });
     }
-
-
 }

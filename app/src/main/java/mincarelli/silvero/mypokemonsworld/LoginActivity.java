@@ -21,15 +21,27 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Implementará la lógica de la pantalla de login
+ * Actividad de inicio de sesión donde el usuario puede autenticarte utilizando correo electrónico o Google.
+ * Esta actividad utiliza Firebase Authentication con AuthUI para permitir el inicio de sesión.
  */
 public class LoginActivity extends AppCompatActivity {
 
+    /**
+     * Se llama cuando se crea la actividad. Este método invoca la superclase
+     * y configura el estado persistente si es necesario.
+     *
+     * @param savedInstanceState Estado guardado de la actividad si está presente.
+     * @param persistentState Estado persistente (opcional) de la actividad.
+     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
     }
 
+    /**
+     * Inicia el proceso de inicio de sesión. Se configuran los proveedores de autenticación disponibles
+     * (correo electrónico y Google) y se lanza el flujo de autenticación.
+     */
     private void startSingIn() {
         // Choose authentication providers
         //Acá le estamos diciendo que queremos una auth por email y por Google
@@ -54,6 +66,10 @@ public class LoginActivity extends AppCompatActivity {
     //Este lanzador tiene un activityResultLauncher que nos avisa cuando Firebase acaba la autenticación
     //nos llamará a la función onActivityResult
 // See: https://developer.android.com/training/basics/intents/result
+    /**
+     * Lanzador de actividad para manejar el resultado de la autenticación.
+     * Después de completar el proceso de inicio de sesión, se llama al callback onActivityResult.
+     */
     private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
             new FirebaseAuthUIActivityResultContract(),
             new ActivityResultCallback<FirebaseAuthUIAuthenticationResult>() {
@@ -64,6 +80,13 @@ public class LoginActivity extends AppCompatActivity {
             }
     );
 
+    /**
+     * Maneja el resultado de la autenticación.
+     * Si la autenticación es exitosa, se redirige al usuario a la actividad principal.
+     * Si la autenticación falla, se muestra un mensaje de error.
+     *
+     * @param result Resultado de la autenticación.
+     */
     //Acá trataremos la auth
     private void onSignInResult(FirebaseAuthUIAuthenticationResult result) {
         IdpResponse response = result.getIdpResponse();
@@ -80,7 +103,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /**
-     * Si hay usuario lo mandamos a la pantalla principal y sino lo mandamos al login
+     * Comprueba si hay un usuario autenticado al iniciar la actividad.
+     * Si hay sesión activa, redirige directamente a la actividad principal.
+     * Si no hay sesión activa, inicia el proceso de inicio de sesión.
      */
     @Override
     protected void onStart() {
@@ -92,9 +117,12 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             startSingIn();
         }
-
     }
 
+    /**
+     * Redirige al usuario a la actividad principal (MainActivity).
+     * También finaliza la actividad de inicio de sesión para evitar que el usuario vuelva atrás.
+     */
     private void goToMainActivity() {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);

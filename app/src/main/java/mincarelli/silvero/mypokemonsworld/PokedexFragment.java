@@ -2,11 +2,8 @@ package mincarelli.silvero.mypokemonsworld;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +20,10 @@ import mincarelli.silvero.mypokemonsworld.databinding.FragmentPokedexBinding;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Fragmento que muestra la lista de Pokémon en la Pokedex.
+ * Permite capturar Pokémon y muestra los detalles de cada uno en una lista.
+ */
 public class PokedexFragment extends Fragment {
 
     private FragmentPokedexBinding binding;
@@ -31,22 +32,30 @@ public class PokedexFragment extends Fragment {
     private List<PokemonDetails> pokemonDetailsList = new ArrayList<>();
     private PokemonRepository repository;
 
+    /**
+     * Método que infla el layout y configura el RecyclerView y el adaptador.
+     * También inicializa la carga de datos de los Pokémon.
+     *
+     * @param inflater           El inflador de vistas para crear la vista del fragmento.
+     * @param container          El contenedor donde se añadirá la vista.
+     * @param savedInstanceState El estado guardado del fragmento (si existe).
+     * @return La vista raíz del fragmento.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentPokedexBinding.inflate(inflater, container, false);
-
 
         // Inicializa RecyclerView
         recyclerView = binding.recyclerviewPokedex;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+
         // Define el listener
         PokedexAdapter.OnPokemonClickListener listener = pokemonDetails -> {
             // Lógica al hacer clic en un Pokémon
             capturePokemon(pokemonDetails);
-            Toast.makeText(getContext(), pokemonDetails.getForms().get(0).getName() + " capturado!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.captured_text, Toast.LENGTH_SHORT).show();
         };
-
 
         // Crea y asigna el adaptador con el listener
         pokedexAdapter = new PokedexAdapter(getContext(), pokemonDetailsList, listener);
@@ -59,16 +68,12 @@ public class PokedexFragment extends Fragment {
         return binding.getRoot();
     }
 
-
-
-
     /**
-     * Llama al repositorio para obtener la lista de Pokémon y actualiza el adaptador con los datos.
+     * Método para cargar la lista de Pokémon desde Firebase y actualizar los Pokémon capturados.
      */
     private void loadPokemonData() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        repository.fetchPokemonList(0, 150, new PokemonRepository.PokemonListCallback() {
+        repository.fetchPokemonList(0, 10, new PokemonRepository.PokemonListCallback() {
             @Override
             public void onPokemonListLoaded(List<PokemonDetails> pokemonDetails) {
                 pokemonDetailsList.clear();
@@ -85,16 +90,14 @@ public class PokedexFragment extends Fragment {
                                     CapturedPokemon capturedPokemon = document.toObject(CapturedPokemon.class);
                                     capturedIds.add(capturedPokemon.getIndex());
                                 }
-
                                 // Marcar los Pokémon capturados en la lista
                                 for (PokemonDetails details : pokemonDetailsList) {
                                     if (capturedIds.contains(details.getId())) {
                                         details.setCaptured(true);
                                     } else {
-                                        details.setCaptured(false); // Asegurarse de que no esté marcado si no está capturado
+                                        details.setCaptured(false);
                                     }
                                 }
-
                                 // Aquí es donde actualizas el adaptador para que se cambien los colores
                                 pokedexAdapter.notifyDataSetChanged(); // Refrescar el adaptador con los cambios
                             }
@@ -103,24 +106,33 @@ public class PokedexFragment extends Fragment {
         });
     }
 
+    /**
+     * Método para capturar un Pokémon, marcándolo como capturado y actualizándolo en Firebase.
+     *
+     * @param details Los detalles del Pokémon que se desea capturar.
+     */
     private void capturePokemon(PokemonDetails details) {
         // Marcar como capturado
         details.setCaptured(true);
-
         // Guardar en Firebase
         saveToFirebase(details);
-
-        // Refrescar el adaptador para cambiar el color del Pokémon capturado
-        pokedexAdapter.notifyDataSetChanged();
+        // Aquí, después de marcar el Pokémon como capturado, se notifica al adaptador para actualizar solo el item
+        int position = pokemonDetailsList.indexOf(details);
+        if (position != -1) {
+            pokedexAdapter.notifyItemChanged(position);  // Actualizar solo el item correspondiente
+        }
     }
 
+    /**
+     * Método para guardar un Pokémon capturado en Firebase.
+     *
+     * @param details Los detalles del Pokémon capturado.
+     */
     private void saveToFirebase(PokemonDetails details) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
         CapturedPokemon captured = new CapturedPokemon(details.getForms().get(0).getName(), details.getId(),
                 details.getTypes().get(0).getType().getName(), details.getWeight() / 10.0,
                 details.getHeight() / 10.0, details.getSprites().getOther().getHome().getFrontDefault());
-
         db.collection("CapturedPokemon")
                 .add(captured)
                 .addOnCompleteListener(task -> {

@@ -23,4 +23,9 @@
     <string name="type">Type:\u0020</string>
     <string name="save">Pokemon saved successfully</string>
     <string name="errorNotSave">Error: Not Saved</string>
+    <string name="captured_text">Pokemon captured!</string>
+    <string name="pokemon_removed">Pokemon removed</string>
+    <string name="error_deleting">Error deleting Pokemon</string>
+    <string name="error_notFound">Pokemon not found</string>
+    <string name="error_getting">Error getting Pokemon</string>
 </resources>

@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,25 +16,56 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class CapturedAdapter  extends RecyclerView.Adapter<CapturedAdapter.CapturedViewHolder> {
+/**
+ * Adaptador para mostrar una lista de Pokémon capturados en un RecyclerView.
+ * Cada elemento de la lista representa un Pokémon capturado con información como su nombre, tipo y una imagen.
+ */
+public class CapturedAdapter extends RecyclerView.Adapter<CapturedAdapter.CapturedViewHolder> {
     private Context context;
     private List<CapturedPokemon> pokemonCapturedList = new ArrayList<>();
+    // Interfaz para manejar clics en los elementos de la lista
     private CapturedOnItemClickListener listener;
 
+    /**
+     * Constructor para el adaptador.
+     *
+     * @param context             El contexto en el que se ejecuta el adaptador.
+     * @param pokemonCapturedList Lista de Pokémon capturados que se van a mostrar.
+     */
     public CapturedAdapter(Context context, List<CapturedPokemon> pokemonCapturedList) {
         this.context = context;
         this.pokemonCapturedList = pokemonCapturedList;
     }
 
+    /**
+     * Interfaz para escuchar eventos de clic en los elementos de la lista.
+     */
     public interface CapturedOnItemClickListener {
+        /**
+         * Método que se ejecuta cuando se hace clic en un elemento de la lista.
+         *
+         * @param pokemon El objeto CapturedPokemon asociado con el elemento clicado.
+         * @param view    La vista sobre la que se hizo clic.
+         */
         void onItemClick(CapturedPokemon pokemon, View view);
     }
+
+    /**
+     * Establece el escuchador para los clics en los elementos de la lista.
+     *
+     * @param listener El escuchador de clics.
+     */
     public void setOnItemClickListener(CapturedOnItemClickListener listener) {
         this.listener = listener;
     }
 
-
+    /**
+     * Crea un nuevo ViewHolder para un ítem del RecyclerView.
+     *
+     * @param parent   El ViewGroup donde se agregará el ViewHolder.
+     * @param viewType El tipo de vista del ítem (no se usa en este caso).
+     * @return Un nuevo ViewHolder con la vista inflada.
+     */
     @NonNull
     @Override
     public CapturedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -43,6 +73,12 @@ public class CapturedAdapter  extends RecyclerView.Adapter<CapturedAdapter.Captu
         return new CapturedViewHolder(view);
     }
 
+    /**
+     * Vincula los datos de un Pokémon a la vista en el ViewHolder.
+     *
+     * @param holder   El ViewHolder donde se colocarán los datos.
+     * @param position La posición del ítem en la lista.
+     */
     @Override
     public void onBindViewHolder(@NonNull CapturedViewHolder holder, int position) {
         CapturedPokemon details = pokemonCapturedList.get(position);
@@ -55,22 +91,28 @@ public class CapturedAdapter  extends RecyclerView.Adapter<CapturedAdapter.Captu
         });
     }
 
-
-
+    /**
+     * Devuelve la cantidad de elementos en la lista de Pokémon capturados.
+     *
+     * @return El tamaño de la lista.
+     */
     @Override
     public int getItemCount() {
         return pokemonCapturedList.size();
     }
 
-    public void removePokemon(int position) {
-        pokemonCapturedList.remove(position);
-        notifyItemRemoved(position);
-    }
-
-    public static class CapturedViewHolder extends RecyclerView.ViewHolder{
+    /**
+     * ViewHolder personalizado que maneja la vista de cada ítem en la lista.
+     */
+    public static class CapturedViewHolder extends RecyclerView.ViewHolder {
         TextView nameTextView, typeTextView, weightTextView, heightTextView, indexTextView;
         ImageView photoImageView, trashIcon;
 
+        /**
+         * Constructor del ViewHolder que inicializa las vistas.
+         *
+         * @param itemView La vista que representa un ítem en la lista.
+         */
         public CapturedViewHolder(View itemView) {
             super(itemView);
             nameTextView = itemView.findViewById(R.id.captured_name);
@@ -79,15 +121,16 @@ public class CapturedAdapter  extends RecyclerView.Adapter<CapturedAdapter.Captu
             weightTextView = itemView.findViewById(R.id.captured_weight);
             heightTextView = itemView.findViewById(R.id.captured_height);
             photoImageView = itemView.findViewById(R.id.captured_image);
-            trashIcon = itemView.findViewById(R.id.trash_icon);
         }
 
+        /**
+         * Vincula los datos de un Pokémon a las vistas del ViewHolder.
+         *
+         * @param pokemon El Pokémon cuyos datos se van a mostrar.
+         */
         public void bind(CapturedPokemon pokemon) {
             nameTextView.setText(pokemon.getName());
-            indexTextView.setText(String.valueOf(pokemon.getIndex()));
             typeTextView.setText(pokemon.getType());
-            weightTextView.setText(String.format("%.1f kg", pokemon.getWeight()));
-            heightTextView.setText(String.format("%.1f m", pokemon.getHeight()));
             Picasso.get().load(pokemon.getImageUrl()).into(photoImageView);
         }
     }

@@ -10,8 +10,7 @@
         android:background="@color/yellow"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="16dp"
-        >
+        android:padding="16dp">
 
         <ImageView
             android:id="@+id/image"
@@ -20,8 +19,6 @@
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
             android:scaleType="centerCrop" />
-
-        <!-- Sección 1: Idioma -->
 
         <TextView
             android:id="@+id/titleLanguageTextView"
@@ -80,8 +77,6 @@
             </RadioGroup>
         </LinearLayout>
 
-
-        <!-- Línea divisoria -->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -89,7 +84,6 @@
             android:layout_marginBottom="16dp"
             android:background="@color/blue" />
 
-        <!-- Sección 2: Texto sobre algo -->
         <TextView
             android:id="@+id/title_about"
             android:layout_width="wrap_content"
@@ -98,8 +92,6 @@
             android:text="@string/about"
             android:textSize="18sp" />
 
-
-        <!-- Línea divisoria -->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -107,7 +99,6 @@
             android:layout_marginBottom="16dp"
             android:background="@color/blue" />
 
-        <!-- Sección 3: Eliminar Pokémon -->
         <TextView
             android:id="@+id/title_enable_delete"
             android:layout_width="wrap_content"
@@ -116,7 +107,6 @@
             android:text="@string/delete"
             android:textSize="18sp" />
 
-
         <Switch
             android:id="@+id/switch_enable_delete"
             android:layout_width="wrap_content"
@@ -124,10 +114,8 @@
             android:layout_marginBottom="24dp"
             android:buttonTint="@color/blue"
             android:padding="8dp"
-            android:text="@string/enable_deletion"
-            android:thumbTint="@color/red" />
+            android:text="@string/enable_deletion" />
 
-        <!-- Línea divisoria -->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -135,7 +123,6 @@
             android:layout_marginBottom="16dp"
             android:background="@color/blue" />
 
-        <!-- Botón Log Out -->
         <Button
             android:id="@+id/logout_button"
             android:layout_width="wrap_content"

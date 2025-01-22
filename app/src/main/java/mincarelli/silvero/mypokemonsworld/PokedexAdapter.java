@@ -1,6 +1,7 @@
 package mincarelli.silvero.mypokemonsworld;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +18,8 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 /**
- * Es un adaptador de RecyclerView que adapta una lista de objetos PokemonDetails para que se muestren
- * correctamente en la interfaz de usuario.
- * Este adaptador se asocia a un RecyclerView en la actividad principal para mostrar los datos de
- * los Pokémon en una lista.
+ * Adaptador para el RecyclerView que muestra la lista de Pokémon en la Pokedex.
+ * Utiliza un ViewHolder para representar cada ítem individual en la lista.
  */
 public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokemonViewHolder> {
 
@@ -28,22 +27,33 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokemonV
     private List<PokemonDetails> pokemonDetailsList;
     private OnPokemonClickListener onPokemonClickListener;
 
-    public PokedexAdapter(Context context, List<PokemonDetails> pokemonDetailsList,  OnPokemonClickListener listener) {
+    /**
+     * Constructor del adaptador.
+     *
+     * @param context            El contexto de la actividad o fragmento que utiliza este adaptador.
+     * @param pokemonDetailsList La lista de objetos `PokemonDetails` que se mostrarán en la Pokedex.
+     * @param listener           El listener que manejará el clic sobre un Pokémon.
+     */
+    public PokedexAdapter(Context context, List<PokemonDetails> pokemonDetailsList, OnPokemonClickListener listener) {
         this.context = context;
         this.pokemonDetailsList = pokemonDetailsList;
         this.onPokemonClickListener = listener;
     }
 
+    /**
+     * Interfaz para manejar los clics sobre los elementos de la lista de Pokémon.
+     */
     public interface OnPokemonClickListener {
         void onPokemonClick(PokemonDetails pokemonDetails);
     }
+
     /**
      * Infla el layout del ítem individual para cada Pokémon.
-     * @param parent The ViewGroup into which the new View will be added after it is bound to
-     *               an adapter position.
-     * @param viewType The view type of the new View.
+     * Este método es llamado cuando se crea un nuevo ViewHolder.
      *
-     * @return
+     * @param parent   El ViewGroup al cual se añadirá la vista inflada.
+     * @param viewType El tipo de vista del nuevo elemento.
+     * @return El nuevo ViewHolder con la vista inflada.
      */
     @NonNull
     @Override
@@ -54,9 +64,10 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokemonV
 
     /**
      * Actualiza la vista del ítem con los datos correspondientes, como el nombre, tipo, peso, altura y la imagen del Pokémon.
-     * @param holder The ViewHolder which should be updated to represent the contents of the
-     *        item at the given position in the data set.
-     * @param position The position of the item within the adapter's data set.
+     * Este método es llamado cuando se enlazan los datos con un ViewHolder.
+     *
+     * @param holder   El ViewHolder que debe ser actualizado con los datos del Pokémon.
+     * @param position La posición del ítem en la lista de datos.
      */
     @Override
     public void onBindViewHolder(PokemonViewHolder holder, int position) {
@@ -69,6 +80,8 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokemonV
         if (details.isCaptured()) {
             holder.cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.captured_background));
             holder.itemView.setEnabled(false);
+            holder.capturedTextView.setVisibility(View.VISIBLE);
+            holder.capturedTextView.setText(R.string.captured_text);
         } else {
             holder.cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.uncaptured_background));
             holder.itemView.setEnabled(true);
@@ -80,25 +93,39 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokemonV
                 onPokemonClickListener.onPokemonClick(details);
             }
         });
+
     }
 
+    /**
+     * Devuelve el número de elementos en la lista de datos.
+     *
+     * @return El tamaño de la lista de Pokémon.
+     */
     @Override
     public int getItemCount() {
         return pokemonDetailsList.size();
     }
 
+    /**
+     * Clase ViewHolder para los ítems de la Pokedex. Guarda las vistas de cada ítem para optimizar el rendimiento.
+     */
     public static class PokemonViewHolder extends RecyclerView.ViewHolder {
-        TextView nameTextView, typeTextView;
+        TextView nameTextView, typeTextView, capturedTextView;
         ImageView photoImageView;
         CardView cardView;
 
+        /**
+         * Constructor para el ViewHolder, inicializa las vistas que se utilizarán en cada ítem de la lista.
+         *
+         * @param itemView La vista del ítem individual que representa un Pokémon.
+         */
         public PokemonViewHolder(View itemView) {
             super(itemView);
             nameTextView = itemView.findViewById(R.id.pokemon_name);
             typeTextView = itemView.findViewById(R.id.pokemon_type);
             photoImageView = itemView.findViewById(R.id.pokemon_image);
+            capturedTextView = itemView.findViewById(R.id.pokemon_captured);
             cardView = itemView.findViewById(R.id.card_pokedex_item);
         }
-
     }
 }

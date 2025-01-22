@@ -5,7 +5,7 @@
     <string name="title_details">Detalles de pokemons capturados</string>
     <string name="about_text">Aplicación desarrollada por Mariana Mincarelli Silvero. Versión 1.0.</string>
     <string name="about">Acerca de</string>
-    <string name="captured">Pokemons capturados</string>
+    <string name="captured">Capturados</string>
     <string name="pokedex">Lista Pokedex</string>
     <string name="settings">Ajustes</string>
     <string name="logout">Cerrar sesión</string>
@@ -22,4 +22,11 @@
     <string name="titleLanguage">Cambiar el idioma</string>
     <string name="name">Nombre del Pokemon</string>
     <string name="type">Tipo:\u0020</string>
+    <string name="save">Pokemon guardado</string>
+    <string name="errorNotSave">Error: No guardado</string>
+    <string name="captured_text">¡Pokemon capturado!</string>
+    <string name="pokemon_removed">Pokemon eliminado</string>
+    <string name="error_deleting">Error al eliminar Pokemon</string>
+    <string name="error_notFound">Pokemon no encontrado</string>
+    <string name="error_getting">Error al obtener el Pokemon</string>
 </resources>

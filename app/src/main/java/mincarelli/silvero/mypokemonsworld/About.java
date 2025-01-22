@@ -2,7 +2,6 @@ package mincarelli.silvero.mypokemonsworld;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,10 +9,16 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 /**
- * Class representing a dialog box "Acerca de" using a {@link DialogFragment}.
- * This dialog displays information about the application and includes a button to close it.
+ * Clase que representa un fragmento de diálogo mostrando información sobre la aplicación.
+ * Este diálogo contiene un título, un mensaje con información de la aplicación y un botón de aceptación.
  */
 public class About extends DialogFragment {
+    /**
+     * Crea y devuelve el diálogo con el contenido de la clase About.
+     *
+     * @param savedInstanceState Estado guardado del fragmento, si existe.
+     * @return El diálogo configurado con el título, mensaje y botón.
+     */
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
