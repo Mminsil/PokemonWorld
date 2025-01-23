@@ -29,4 +29,5 @@
     <string name="error_deleting">Error al eliminar Pokemon</string>
     <string name="error_notFound">Pokemon no encontrado</string>
     <string name="error_getting">Error al obtener el Pokemon</string>
+    <string name="error_login">Error en el Login</string>
 </resources>

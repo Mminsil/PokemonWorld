@@ -40,7 +40,7 @@
                 android:text="@string/name"
                 android:textAllCaps="true"
                 android:textColor="#FF0000"
-                android:textSize="30sp" />
+                android:textSize="30sp"/>
 
             <TextView
                 android:id="@+id/pokemon_type"

@@ -98,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
             goToMainActivity();
         } else {
             //Le ponemos un toast info
-            Toast.makeText(this, "Error login", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.error_login, Toast.LENGTH_SHORT).show();
         }
     }
 
