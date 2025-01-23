@@ -4,6 +4,10 @@
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/yellow</item>
         <item name="android:windowBackground">@color/blue</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/pokemon</item>
+        <item name="android:windowSplashScreenAnimationDuration">1000</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">@color/yellow</item>
+        <item name="android:windowSplashScreenBackground">@color/blue</item>
     </style>
 
     <style name="Theme.MyPokemonsWorld" parent="Base.Theme.MyPokemonsWorld" />
