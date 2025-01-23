@@ -61,8 +61,6 @@ public class SettingsFragment extends Fragment {
             prefs.edit().putBoolean("enable_delete", isChecked).apply();
         });
 
-        binding.image.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.poke));
-
         //Configurar clic del textview About us
         binding.titleAbout.setOnClickListener(this::clicAbout);
 
@@ -90,7 +88,6 @@ public class SettingsFragment extends Fragment {
                     Toast.makeText(requireContext(), "Se ha cerrado sesión correctamente", Toast.LENGTH_SHORT).show();
                     goToLogin();
                 });
-
     }
 
     /**

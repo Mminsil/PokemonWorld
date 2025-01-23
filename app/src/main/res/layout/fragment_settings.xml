@@ -12,15 +12,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="250dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:scaleType="centerCrop" />
-
-        <TextView
+       <TextView
             android:id="@+id/titleLanguageTextView"
             style="@style/headerTitleDrawerStyle"
             android:layout_width="match_parent"
@@ -29,7 +21,8 @@
             android:text="@string/titleLanguage"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+           android:textSize="20sp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,7 +40,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/language"
-                android:textSize="18sp" />
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
             <RadioGroup
                 android:id="@+id/languageRadioGroup"
@@ -63,7 +57,7 @@
                     android:buttonTint="@color/red"
                     android:clickable="true"
                     android:text="@string/english"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <RadioButton
                     android:id="@+id/spanishRadioButton"
@@ -72,7 +66,7 @@
                     android:buttonTint="@color/red"
                     android:clickable="true"
                     android:text="@string/spanish"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
             </RadioGroup>
         </LinearLayout>
@@ -90,7 +84,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="@string/about"
-            android:textSize="18sp" />
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
         <View
             android:layout_width="match_parent"
@@ -104,8 +99,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            android:textColor="@color/black"
             android:text="@string/delete"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <Switch
             android:id="@+id/switch_enable_delete"
@@ -114,6 +110,7 @@
             android:layout_marginBottom="24dp"
             android:buttonTint="@color/blue"
             android:padding="8dp"
+            android:textSize="16sp"
             android:text="@string/enable_deletion" />
 
         <View
