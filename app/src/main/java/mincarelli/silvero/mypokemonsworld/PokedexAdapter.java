@@ -84,6 +84,7 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokemonV
         } else {
             holder.cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.uncaptured_background));
             holder.itemView.setEnabled(true);
+            holder.capturedTextView.setVisibility(View.GONE);
         }
 
         // Configurar click listener
