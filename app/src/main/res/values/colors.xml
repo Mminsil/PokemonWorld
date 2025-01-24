@@ -5,6 +5,7 @@
     <color name="yellow">#FFCC00</color>
     <color name="red">#FF0000</color>
     <color name="blue">#3B4CCA</color>
+    <color name="gray">#797B83</color>
     <color name="uncaptured_background">#637AFF</color>
     <color name="captured_background">#F18588</color>
 </resources>
