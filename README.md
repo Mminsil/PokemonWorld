@@ -46,6 +46,6 @@ El proyecto me resultó bastante complejo y largo pero aprendí un montón.
 Me costó entender el acceso a las características del pokemon de la API. Me resultó bastante estimulante, aunque el tema no me gusta, pero me gustó ver los resultados que se pueden ir obteniendo. Me hubiese gustado poder dedicarle más tiempo e ir agregando más funcionalidades o mejorar el diseño.
 Al ser un proyecto largo, me cuesta seguir los pasos que realicé y me encontré con cosas que no me acordaba ni que las había hecho yo :D
 Lidié con el problema de que cuando se hace una cosa se deshace otra, pero cuando ya fui entendiendo un poco el proyecto terminé encantada con él.
-
+En este proyecto usé el español para el JavaDoc.
 
 
