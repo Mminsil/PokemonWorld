@@ -85,7 +85,7 @@ public class SettingsFragment extends Fragment {
         AuthUI.getInstance()
                 .signOut(requireContext())
                 .addOnCompleteListener(task -> {
-                    Toast.makeText(requireContext(), "Se ha cerrado sesión correctamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), R.string.logout_text, Toast.LENGTH_SHORT).show();
                     goToLogin();
                 });
     }
